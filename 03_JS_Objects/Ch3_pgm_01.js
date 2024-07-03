@@ -1,25 +1,22 @@
-// Using variables to represent a book
+// Using variables to represent books
+var bookTitle1;
+var bookAuthor1;
+bookTitle1 = "The Hobbit";
+bookAuthor1 = "J. R. R. Tolkien";
+console.log(bookTitle1 + " by " + bookAuthor1);
+var bookTitle2;
+var bookAuthor2;
+bookTitle2 = "1984";
+bookAuthor2 = "George Orwell";
+console.log(bookTitle2 + " by " + bookAuthor2);
+var bookTitle3;
+var bookAuthor3;
+bookTitle3 = "To Kill a Mockingbird";
+bookAuthor3 = "Harper Lee";
+console.log(bookTitle3 + " by " + bookAuthor3);
+var bookTitle4, bookTitle5, bookTitle6, bookTitle7, bookTitle8, bookTitle9, bookTitle10;
+var bookAuthor4, bookAuthor5, bookAuthor6, bookAuthor7, bookAuthor8, bookAuthor9, bookAuthor10;
 
-var bookTitle;
-var bookAuthor;
-
-bookTitle = "The Hobbit";
-bookAuthor = "J. R. R. Tolkien";
-
-console.log(bookTitle + " by " + bookAuthor);
-
-
-
-/* Further Adventures
- *
- * 1) Declare variables for a second book
- *    and assign them values.
- *
- * 2) Add code to log its details to the console.
- *
- * 3) Repeat steps 1 and 2 for a third book.
- *
- * 4) Consider the code needed for 10 books.
- *    For 100 books.
- *
- */
+bookTitle4 = "Harry Potter and the Philosopher's Stone";
+bookAuthor4 = "J.K. Rowling";
+console.log(bookTitle4 + " by " + bookAuthor4);
