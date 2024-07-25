@@ -1,49 +1,48 @@
-// Passing an array to a function
+
+var reportForFriday = getVisitorReport(visitors, 5);
+console.log(reportForFriday); 
 
 var getVisitorReport = function (visitorArray, dayInWeek) {
-	var days = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday"
-  ];
-	var index = dayInWeek - 1;
-	var visitorReport;
+    var days = [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ];
+    var index = dayInWeek - 1;
+    var visitorReport;
 
-	visitorReport = "There were ";
-  visitorReport += visitorArray[index];
-  visitorReport += " visitors ";
-	visitorReport += "on " + days[index];
+    if (index < 0 || index >= days.length) {
+        return "Invalid day index";
+    }
 
-	return visitorReport;
+    visitorReport = "There were ";
+    visitorReport += visitorArray[index];
+    visitorReport += " visitors ";
+    visitorReport += "on " + days[index];
+
+    return visitorReport;
 };
 
-var visitors = [ 354, 132, 210, 221, 481 ];
+var getMonthlyVisitorReport = function (monthArray, weekIndex, dayIndex) {
+    var week = monthArray[weekIndex];
+    
+    if (!week) {
+        return "Invalid week index";
+    }
+    
+    return getVisitorReport(week, dayIndex);
+};
 
-var report = getVisitorReport(visitors, 2);
+var week1 = [354, 132, 210, 221, 481, 300, 250];
+var week2 = [400, 150, 220, 230, 500, 320, 270];
+var week3 = [420, 160, 230, 240, 490, 310, 260];
+var week4 = [430, 170, 240, 250, 510, 330, 280];
 
-console.log(report);
-
-
-
-/* Further Adventures
- *
- * 1) Run the report for Friday.
- *
- * 2) Update the function to include Saturday and Sunday.
- *
- * A month of visitor info could be represented as an
- * array of arrays: [ week1, week2, week3, week4 ]
- * where each week could be an array of visitor numbers.
- *
- * 3) Write a new function with three parameters,
- *    the month array, the week wanted and the day wanted.
- *    The new function should return the visitor report specified.
- *    You can call getVisitorReport from your function if you want.
- *
- * 4) Create four arrays of week visitor numbers
- *    and a month array of the four weeks.
- *    Test your function from 3) for different weeks and days.
- *
- */
+var month = [week1, week2, week3, week4];
+console.log(getMonthlyVisitorReport(month, 0, 5)); 
+console.log(getMonthlyVisitorReport(month, 2, 7)); 
+console.log(getMonthlyVisitorReport(month, 1, 4)); 
