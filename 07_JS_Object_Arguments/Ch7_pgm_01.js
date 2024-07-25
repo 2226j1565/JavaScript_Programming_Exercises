@@ -1,9 +1,5 @@
-// Passing a function an object as an argument
-
-var planet1;
-var getPlanetInfo;
-
-planet1 = {
+// Define planet objects
+var planet1 = {
     name: "Jupiter",
     position: 5,
     type: "Gas Giant",
@@ -11,23 +7,21 @@ planet1 = {
     sizeRank: 1
 };
 
-getPlanetInfo = function (planet) {
-    return planet.name + ": planet number " + planet.position;
+var planet2 = {
+    name: "Saturn",
+    position: 6,
+    type: "Gas Giant",
+    radius: 58232,
+    sizeRank: 2
+};
+
+var getPlanetInfo = function (planet) {
+    return planet.name +
+           "\nPosition: " + planet.position +
+           "\nType: " + planet.type +
+           "\nRadius: " + planet.radius + " km" +
+           "\nSize Rank: " + planet.sizeRank;
 };
 
 console.log(getPlanetInfo(planet1));
-
-
-
-/* Further Adventures
- *
- * 1) Create a second planet object.
- *
- * 2) Use getPlanetInfo to log details of
- *    the second planet.
- *
- * 3) Update the getPlanetInfo function to
- *    include more information about
- *    each planet.
- *
- */
+console.log(getPlanetInfo(planet2));
