@@ -1,13 +1,37 @@
-const skills = ['HTML', 'CSS', 'JS', 'React','Node', 'Python']
+const skills = ['HTML', 'CSS', 'JS', 'React', 'Node', 'Python'];
+const skillsJson = JSON.stringify(skills);
+console.log(skillsJson);
 let age = 250;
-let isMarried = true
+const ageJson = JSON.stringify(age);
+console.log(ageJson);
+let isMarried = true;
+const isMarriedJson = JSON.stringify(isMarried);
+console.log(isMarriedJson);
 const student = {
-  firstName:'Asabeneh',
-  lastName:'Yetayehe',
-  age:250,
-  isMarried:true,
-  skills:['HTML', 'CSS', 'JS', 'React','Node', 'Python', ]
-}
+  firstName: 'Asabeneh',
+  lastName: 'Yetayehe',
+  age: 250,
+  isMarried: true,
+  skills: ['HTML', 'CSS', 'JS', 'React', 'Node', 'Python']
+};
+const studentJson = JSON.stringify(student);
+console.log(studentJson);
+const student = {
+  firstName: 'Asabeneh',
+  lastName: 'Yetayehe',
+  age: 250,
+  isMarried: true,
+  skills: ['HTML', 'CSS', 'JS', 'React', 'Node', 'Python']
+};
+
+const studentReduced = {
+  firstName: student.firstName,
+  lastName: student.lastName,
+  skills: student.skills
+};
+
+const studentReducedJson = JSON.stringify(studentReduced);
+console.log(studentReducedJson);
 const txt = `{
     "Alex": {
         "email": "alex@alex.com",
@@ -102,20 +126,15 @@ const txt = `{
         "isLoggedIn": false,
         "points": 40
     }
-}
-`
+}`;
 
+const users = JSON.parse(txt);
+console.log(users);
+const userWithMostSkills = Object.keys(users).reduce((maxUser, key) => {
+    if (users[key].skills.length > (maxUser.skills || []).length) {
+        return users[key];
+    }
+    return maxUser;
+}, {});
 
-// Level 1
-
-// 1. Change skills array to JSON using JSON.stringify()
-// 2. Stringify the age variable
-// 3. Stringify the isMarried variable
-// 4. Stringify the student object
-
-// Level 2
-// 1. Stringify the students object with only firstName, lastName and skills properties
-
-// Level 3
-// 1. Parse the txt JSON to object.
-// 2. Find the user who has many skills from the variable stored in txt.
+console.log(userWithMostSkills);
