@@ -1,86 +1,42 @@
-# Map
-
-## Creating an empty Map
-
-```
-const map = new Map()
-console.log(map)
-```
-```
-Map(0) {}
-```
-
-## Creating an Map from array
-
-```
-countries = [
+const map = new Map();
+console.log(map); 
+const countries = [
   ['Finland', 'Helsinki'],
   ['Sweden', 'Stockholm'],
   ['Norway', 'Oslo'],
-]
-const map = new Map(countries)
-console.log(map)
-console.log(map.size)
-```
+];
 
-```
-Map(3) {"Finland" => "Helsinki", "Sweden" => "Stockholm", "Norway" => "Oslo"}
-3
-```
+const map = new Map(countries);
+console.log(map); 
+console.log(map.size); 
+const countriesMap = new Map();
+console.log(countriesMap.size);
 
-## Adding values to the Map
+countriesMap.set('Finland', 'Helsinki');
+countriesMap.set('Sweden', 'Stockholm');
+countriesMap.set('Norway', 'Oslo');
 
-```
-const countriesMap = new Map()
-console.log(countriesMap.size) // 0
-countriesMap.set('Finland', 'Helsinki')
-countriesMap.set('Sweden', 'Stockholm')
-countriesMap.set('Norway', 'Oslo')
-console.log(countriesMap)
-console.log(countriesMap.size)
-```
-```
-Map(3) {"Finland" => "Helsinki", "Sweden" => "Stockholm", "Norway" => "Oslo"}
-3
-```
-
-## Getting a value from Map
-```
-console.log(countriesMap.get('Finland'))
-```
-```
-Helsinki
-```
-
-## Checking key in Map
-Check if a key exists in a map using has method. It returns true or false.
-
-```
-console.log(countriesMap.has('Finland'))
-```
-```
-true
-```
-
-#### Getting all values from map using loop
-
-```
-for (const country of countriesMap) {
-  console.log(country)
+console.log(countriesMap); 
+console.log(countriesMap.size); 
+console.log(countriesMap.get('Finland')); 
+console.log(countriesMap.has('Finland'));
+console.log(countriesMap.has('Denmark')); 
+console.log(countriesMap); 
+countriesMap.clear();
+console.log(countriesMap);
+for (const [country, city] of countriesMap) {
+  console.log(country, city);
 }
-```
-```
-(2) ["Finland", "Helsinki"]
-(2) ["Sweden", "Stockholm"]
-(2) ["Norway", "Oslo"]
-```
-```
-for (const [country, city] of countriesMap){
- console.log(country, city)
+
+for (const key of countriesMap.keys()) {
+  console.log(key);
 }
-```
-```
-Finland Helsinki
-Sweden Stockholm
-Norway Oslo
-```
+
+for (const value of countriesMap.values()) {
+  console.log(value);
+}
+
+for (const [key, value] of countriesMap.entries()) {
+  console.log(key, value);
+}
+
