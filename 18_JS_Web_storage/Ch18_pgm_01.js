@@ -1,18 +1,65 @@
-// Level 1
+// Storing personal information in localStorage
+const personalInfo = {
+  firstName: 'John',
+  lastName: 'Doe',
+  age: 30,
+  country: 'USA',
+  city: 'New York'
+};
 
-// Store you first name, last name, age, country, city in your browser localStorage.
+localStorage.setItem('personalInfo', JSON.stringify(personalInfo));
+const storedPersonalInfo = JSON.parse(localStorage.getItem('personalInfo'));
+console.log(storedPersonalInfo);
+const student = {
+  firstName: 'Alice',
+  lastName: 'Smith',
+  age: 22,
+  skills: ['HTML', 'CSS', 'JavaScript', 'React'],
+  country: 'Canada',
+  enrolled: true
+};
+localStorage.setItem('student', JSON.stringify(student));
+const storedStudent = JSON.parse(localStorage.getItem('student'));
+console.log(storedStudent);
+const personAccount = {
+  firstName: 'Jane',
+  lastName: 'Doe',
+  incomes: [
+    { description: 'Salary', amount: 5000 },
+    { description: 'Freelance', amount: 1200 }
+  ],
+  expenses: [
+    { description: 'Rent', amount: 1500 },
+    { description: 'Utilities', amount: 300 },
+    { description: 'Groceries', amount: 200 }
+  ],
 
+  totalIncome() {
+    return this.incomes.reduce((total, income) => total + income.amount, 0);
+  },
 
-// Level 2
+  totalExpense() {
+    return this.expenses.reduce((total, expense) => total + expense.amount, 0);
+  },
 
-// Create a student object. The student object will have first name, last name, age, skills, 
-// country, enrolled keys and values for the keys. Store the student object in your browser 
-// localStorage.
+  accountInfo() {
+    return `${this.firstName} ${this.lastName} has a total income of $${this.totalIncome()} and total expenses of $${this.totalExpense()}.`;
+  },
 
+  addIncome(description, amount) {
+    this.incomes.push({ description, amount });
+  },
 
-// Level 3
+  addExpense(description, amount) {
+    this.expenses.push({ description, amount });
+  },
 
-// Create an object called personAccount. It has firstname, lastname, incomes, expenses 
-// properties and it has totalIncome, totalExpense, accountInfo,addIncome, addExpense and 
-// accountBalance methods. Incomes is a set of incomes and its description and expenses is 
-// also a set of expenses and its description.
+  accountBalance() {
+    return this.totalIncome() - this.totalExpense();
+  }
+};
+console.log(personAccount.accountInfo());
+personAccount.addIncome('Bonus', 500);
+personAccount.addExpense('Internet', 60);
+console.log(personAccount.accountInfo());
+console.log('Account Balance: $' + personAccount.accountBalance());
