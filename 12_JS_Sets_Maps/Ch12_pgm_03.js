@@ -1,32 +1,38 @@
-const a = [4, 5, 8, 9]
-const b = [3, 4, 5, 7]
-const countries = ['Finland', 'Sweden', 'Norway']
+const countriesAPI = 'https://restcountries.com/v2/all';
 
-// How many languages are there in the countries object file.
+const mostSpokenLanguages = async (countries, topN) => {
+  try {
+    const response = await fetch(countriesAPI);
+    const data = await response.json();
+    const languageCounts = {};
+    data.forEach(country => {
+      const languages = country.languages;
+      if (languages) {
+        languages.forEach(language => {
+          const langName = language.name;
+          languageCounts[langName] = (languageCounts[langName] || 0) + 1;
+        });
+      }
+    });
+    const languageArray = Object.entries(languageCounts)
+      .map(([language, count]) => ({ [language]: count }));
 
-// *** Use the countries data to find the 10 most spoken languages:
+    const sortedLanguages = languageArray.sort((a, b) => {
+      const countA = Object.values(a)[0];
+      const countB = Object.values(b)[0];
+      return countB - countA;
+    }).slice(0, topN);
 
+    return sortedLanguages;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 
-//    // Your output should look like this
-//    console.log(mostSpokenLanguages(countries, 10))
-//    [
-//      { English: 91 },
-//      { French: 45 },
-//      { Arabic: 25 },
-//      { Spanish: 24 },
-//      { Russian: 9 },
-//      { Portuguese: 9 },
-//      { Dutch: 8 },
-//      { German: 7 },
-//      { Chinese: 5 },
-//      { Swahili: 4 },
-//      { Serbian: 4 }
-//    ]
+mostSpokenLanguages(countries, 10).then(result => {
+  console.log(result);
+});
 
-//   // Your output should look like this
-//   console.log(mostSpokenLanguages(countries, 3))
-//   [
-//   {English:91},
-//   {French:45},
-//   {Arabic:25}
-//   ]
+mostSpokenLanguages(countries, 3).then(result => {
+  console.log(result);
+});
