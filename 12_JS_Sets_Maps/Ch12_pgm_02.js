@@ -1,7 +1,15 @@
-const a = [4, 5, 8, 9]
-const b = [3, 4, 5, 7]
-const countries = ['Finland', 'Sweden', 'Norway']
+const a = [4, 5, 8, 9];
+const b = [3, 4, 5, 7];
 
-// Find a union b
-// Find a intersection b
-// Find a with b
+const union = new Set([...a, ...b]);
+console.log(Array.from(union)); 
+const a = [4, 5, 8, 9];
+const b = [3, 4, 5, 7];
+
+const intersection = new Set(a.filter(item => b.includes(item)));
+console.log(Array.from(intersection)); 
+const a = [4, 5, 8, 9];
+const b = [3, 4, 5, 7];
+
+const difference = new Set(a.filter(item => !b.includes(item)));
+console.log(Array.from(difference)); 
