@@ -1,56 +1,73 @@
-# Closure
-
-JavaScript allows writing function inside an outer function. We can write as many inner functions as we want. If inner function access the variables of outer function then it is called closure.
-
-```
 function outerFunction() {
     let count = 0;
     function innerFunction() {
-        count++
-        return count
+        count++;
+        return count;
     }
 
-    return innerFunction
+    return innerFunction;
 }
-const innerFunc = outerFunction()
 
-console.log(innerFunc())
-console.log(innerFunc())
-console.log(innerFunc())
-```
+const innerFunc = outerFunction();
 
-```
-1
-2
-3
-```
-
-#### Let us more example of inner functions
-
-```
+console.log(innerFunc()); // 1
+console.log(innerFunc()); // 2
+console.log(innerFunc()); // 3
 function outerFunction() {
     let count = 0;
     function plusOne() {
-        count++
-        return count
+        count++;
+        return count;
     }
     function minusOne() {
-        count--
-        return count
+        count--;
+        return count;
     }
 
     return {
-        plusOne:plusOne(),
-        minusOne:minusOne()
-    }
+        plusOne: plusOne,
+        minusOne: minusOne
+    };
 }
-const innerFuncs = outerFunction()
 
-console.log(innerFuncs.plusOne)
-console.log(innerFuncs.minusOne)
-```
+const innerFuncs = outerFunction();
 
-```
-1
-0
-```
+console.log(innerFuncs.plusOne()); // 1
+console.log(innerFuncs.plusOne()); // 2
+console.log(innerFuncs.minusOne()); // 1
+console.log(innerFuncs.minusOne()); // 0
+
+function BankAccount(initialBalance) {
+    let balance = initialBalance;
+
+    function deposit(amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    function withdraw(amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    function getBalance() {
+        return balance;
+    }
+
+    return {
+        deposit,
+        withdraw,
+        getBalance
+    };
+}
+
+const account = BankAccount(100);
+
+console.log(account.getBalance()); 
+account.deposit(50);
+console.log(account.getBalance()); 
+account.withdraw(30);
+console.log(account.getBalance()); 
+
