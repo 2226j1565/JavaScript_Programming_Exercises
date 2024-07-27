@@ -1,5 +1,4 @@
-// Including a moons array in our Planet constructor
-
+// Define the Planet constructor function
 var Planet = function (name, position, type) {
     this.name = name;
     this.position = position;
@@ -8,37 +7,29 @@ var Planet = function (name, position, type) {
   
     this.showPlanet = function () {
         var info = this.name + ": planet " + this.position;
-        info +=  " - " + this.type;
+        info += " - " + this.type;
         console.log(info);
-        console.log("Moons: " + this.moons.join(', ') + ".");
+        console.log("Moons: " + (this.moons.length > 0 ? this.moons.join(', ') : "None") + ".");
     };
   
     this.addMoon = function (moon) {
         this.moons.push(moon);
     };
+
+    this.removeMoon = function () {
+        if (this.moons.length > 0) {
+            this.moons.pop();
+        }
+    };
 };
-
-var planet = new Planet( "Jupiter", 5, "Gas Giant" );
-
-planet.addMoon("Io");
-planet.addMoon("Europa");
-
-planet.showPlanet();
-
-
-
-/* Further Adventures
- *
- * 1) Create a second planet.
- *    Make one up if you like.
- *
- * 2) Add three moons to the second planet.
- *
- * 3) Call the showPlanet method
- *    on the second planet.
- *
- * 4) Add a removeMoon method
- *    that removes the last moon
- *    from the moons array.
- *
- */
+var planet1 = new Planet("Jupiter", 5, "Gas Giant");
+planet1.addMoon("Io");
+planet1.addMoon("Europa");
+planet1.showPlanet();
+var planet2 = new Planet("Uranus", 7, "Ice Giant");
+planet2.addMoon("Titania");
+planet2.addMoon("Oberon");
+planet2.addMoon("Miranda");
+planet2.showPlanet();
+planet2.removeMoon();
+planet2.showPlanet();
