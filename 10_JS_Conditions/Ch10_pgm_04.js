@@ -1,7 +1,5 @@
-// Guess the random number
-
 var getGuesser = function () {
-    var secret = Math.floor(Math.random() * 10 + 1);
+    var secret = Math.floor(Math.random() * (50 - 30 + 1) + 30); // Secret number between 30 and 50
   
     return function (userNumber) {
       if (userNumber === secret) {
@@ -12,27 +10,12 @@ var getGuesser = function () {
     };
   };
   
-  var guess = getGuesser();
-  
-  
-  
-  /* Further Adventures
-   *
-   * 1) Run the program.
-   *
-   * 2) Play the game a few times on the console.
-   *    e.g. guess(2)
-   *
-   * 3) Change the code so the secret number is
-   *    between 30 and 50.
-   *
-   * 4) Test your changes.
-   *
-   * CHALLENGE: Create a function called 'between'
-   * that returns a random whole number between two
-   * numbers passed as arguments.
-   *
-   * e.g. between(1, 5)      //   1 <= whole number <= 5
-   *      between(100, 200)  // 100 <= whole number <= 200
-   *
-   */
+var guess = getGuesser();
+console.log(guess(35));
+console.log(guess(40)); 
+var between = function (min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+console.log(between(1, 5));  
+console.log(between(100, 200)); 
+console.log(between(30, 50)); 
