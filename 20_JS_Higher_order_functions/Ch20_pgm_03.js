@@ -1,54 +1,46 @@
-// Use the countries information, in the data folder. Sort countries by name, by capital, by population
 
-// *** Find the 10 most spoken languages:
+const countries = [
+  { country: 'China', capital: 'Beijing', population: 1377422166, languages: ['Chinese'] },
+  { country: 'India', capital: 'New Delhi', population: 1295210000, languages: ['Hindi', 'English'] },
+  { country: 'United States of America', capital: 'Washington, D.C.', population: 323947000, languages: ['English'] },
+  { country: 'Indonesia', capital: 'Jakarta', population: 258705000, languages: ['Indonesian'] },
+  { country: 'Brazil', capital: 'Brasília', population: 206135893, languages: ['Portuguese'] },
+  { country: 'Pakistan', capital: 'Islamabad', population: 194125062, languages: ['Urdu', 'English'] },
+  { country: 'Nigeria', capital: 'Abuja', population: 186988000, languages: ['English'] },
+  { country: 'Bangladesh', capital: 'Dhaka', population: 161006790, languages: ['Bengali'] },
+  { country: 'Russian Federation', capital: 'Moscow', population: 146599183, languages: ['Russian'] },
+  { country: 'Japan', capital: 'Tokyo', population: 126960000, languages: ['Japanese'] },
+];
+const sortedByName = countries.slice().sort((a, b) => a.country.localeCompare(b.country));
+console.log('Sorted by Name:', sortedByName);
+const sortedByCapital = countries.slice().sort((a, b) => a.capital.localeCompare(b.capital));
+console.log('Sorted by Capital:', sortedByCapital);
+const sortedByPopulation = countries.slice().sort((a, b) => b.population - a.population);
+console.log('Sorted by Population:', sortedByPopulation);
+function mostSpokenLanguages(countries, topN) {
+  const languageCount = countries.reduce((acc, { languages }) => {
+    languages.forEach(language => {
+      acc[language] = (acc[language] || 0) + 1;
+    });
+    return acc;
+  }, {});
 
-// Your output should look like this
-console.log(mostSpokenLanguages(countries, 10))
-[
-{country: 'English',count:91},
-{country: 'French',count:45},
-{country: 'Arabic',count:25},
-{country: 'Spanish',count:24},
-{country:'Russian',count:9},
-{country:'Portuguese', count:9},
-{country:'Dutch',count:8},
-{country:'German',count:7},
-{country:'Chinese',count:5},
-{country:'Swahili',count:4}
-]
+  const sortedLanguages = Object.entries(languageCount)
+    .map(([language, count]) => ({ country: language, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, topN);
 
-// Your output should look like this
-console.log(mostSpokenLanguages(countries, 3))
-[
-{country: 'English',count: 91},
-{country: 'French',count: 45},
-{country: 'Arabic',count: 25}
-]
+  return sortedLanguages;
+}
 
+console.log(mostSpokenLanguages(countries, 10));
+console.log(mostSpokenLanguages(countries, 3));
+function mostPopulatedCountries(countries, topN) {
+  return countries.slice()
+    .sort((a, b) => b.population - a.population)
+    .slice(0, topN)
+    .map(({ country, population }) => ({ country, population }));
+}
 
-// *** Use countries_data.js file create a function which create the ten most populated countries
-
-console.log(mostPopulatedCountries(countries, 10))
-
-[
-{country: 'China', population: 1377422166},
-{country: 'India', population: 1295210000},
-{country: 'United States of America', population: 323947000},
-{country: 'Indonesia', population: 258705000},
-{country: 'Brazil', population: 206135893},
-{country: 'Pakistan', population: 194125062},
-{country: 'Nigeria', population: 186988000},
-{country: 'Bangladesh', population: 161006790},
-{country: 'Russian Federation', population: 146599183},
-{country: 'Japan', population: 126960000}
-]
-
-console.log(mostPopulatedCountries(countries, 3))
-[
-{country: 'China', population: 1377422166},
-{country: 'India', population: 1295210000},
-{country: 'United States of America', population: 323947000}
-]
-
-
-
+console.log(mostPopulatedCountries(countries, 10));
+console.log(mostPopulatedCountries(countries, 3));
