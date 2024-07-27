@@ -1,6 +1,11 @@
-// Write a pattern which identify if a string is a valid JavaScript variable
+function is_valid_variable(name) {
+ 
+  const regex = /^[a-zA-Z_$][a-zA-Z_$0-9]*$/;
 
-// is_valid_variable('first_name') # True
-// is_valid_variable('first-name') # False
-// is_valid_variable('1first_name') # False
-// is_valid_variable('firstname') # True
+  return regex.test(name);
+}
+
+console.log(is_valid_variable('first_name'));
+console.log(is_valid_variable('first-name')); 
+console.log(is_valid_variable('1first_name')); 
+console.log(is_valid_variable('firstname')); 
